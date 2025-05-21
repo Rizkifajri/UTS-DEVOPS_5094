@@ -1,26 +1,17 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Install') {
-            steps {
-                sh 'npm install'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                sh 'npm test'
-            }
-        }
+    tools {
+        nodejs "NodeJS 18"
     }
 
-    post {
-        success {
-            echo 'Build sukses!'
-        }
-        failure {
-            echo 'Build gagal!'
+    stages {
+        stage('Build') {
+            steps {
+                sh 'node -v'
+                sh 'npm install'
+                // perintah lainnya
+            }
         }
     }
 }
