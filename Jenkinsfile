@@ -2,16 +2,26 @@ pipeline {
     agent any
 
     tools {
-        nodejs "NodeJS 18"
+        nodejs 'NodeJS 18' // harus sama dengan nama yang kamu isikan
     }
 
     stages {
-        stage('Build') {
+        stage('Install') {
             steps {
-                sh 'node -v'
                 sh 'npm install'
-                // perintah lainnya
             }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'npm test'
+            }
+        }
+    }
+
+    post {
+        failure {
+            echo 'Build gagal!'
         }
     }
 }
