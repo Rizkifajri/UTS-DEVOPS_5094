@@ -1,25 +1,34 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs 'NodeJS 18' // harus sama dengan nama yang kamu isikan
-    }
-
     stages {
-        stage('Install') {
+        stage('Preparation') {
             steps {
-                sh 'npm install'
+                echo 'Menyiapkan pipeline...'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Tahap build dijalankan (simulasi)...'
+                // Simulasi perintah build, bisa ganti sesuai kebutuhan
+                sh 'echo "Build selesai."'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'npm test'
+                echo 'Tahap test dijalankan (simulasi)...'
+                // Simulasi perintah test
+                sh 'echo "Test selesai."'
             }
         }
     }
 
     post {
+        success {
+            echo 'Build berhasil!'
+        }
         failure {
             echo 'Build gagal!'
         }
